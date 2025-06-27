@@ -5,12 +5,12 @@ namespace _Project.Scripts.Common.DOTweenServices
 {
     public class MoveItemSystem
     {
-        public Tween Move(RectTransform moveObject, float duration, float moveDistance)
+        public void Move(RectTransform moveObject, float duration, float moveDistance, Vector3 to)
         {
             Vector3 startPos = moveObject.position;
-            Vector3 endPos = startPos + new Vector3(moveDistance, 0, 0);
+            Vector3 endPos = startPos + to * moveDistance;
         
-            return moveObject.DOMoveX(endPos.x, duration)
+            moveObject.DOMove(endPos, duration)
                 .SetEase(Ease.InOutSine);
         }
     }

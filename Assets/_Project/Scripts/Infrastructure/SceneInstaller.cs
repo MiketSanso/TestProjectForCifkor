@@ -22,6 +22,7 @@ namespace _Project.Scripts.Infrastructure
         [SerializeField] private ScrollPanelView _scrollPanelView;
         [SerializeField] private PopUpView _popUpView;
         [SerializeField] private PanelBreedsView _panelBreedsView;
+        [SerializeField] private VFXData _vfxData;
         
         public override void InstallBindings()
         {
@@ -35,7 +36,7 @@ namespace _Project.Scripts.Infrastructure
         private void BindClicker()
         {
             Container.Bind<ClickerModel>().AsSingle().WithArguments(_clickerData);
-            Container.BindInterfacesAndSelfTo<ClickerPresenter>().AsSingle().WithArguments(_clickerView,_clickerData);
+            Container.BindInterfacesAndSelfTo<ClickerPresenter>().AsSingle().WithArguments(_clickerView,_clickerData, _vfxData);
             Container.Bind<EnergyRecharger>().AsSingle().WithArguments(_clickerData);
             Container.Bind<AutoClicker>().AsSingle().WithArguments(_clickerData);
         }

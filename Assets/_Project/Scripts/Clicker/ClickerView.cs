@@ -7,12 +7,15 @@ namespace _Project.Scripts.Clicker
 {
     public class ClickerView : MonoBehaviour
     {
+        public event Action OnClickAnimation;
         public event Action OnButtonClick;
         
         [SerializeField] private Slider _slider;
         [SerializeField] private TMP_Text _textEnergy;
         [SerializeField] private TMP_Text _textMoney;
         [SerializeField] private Button _button;
+        
+        [field: SerializeField] public RectTransform TransformButton { get; private set; }
 
         private void Start()
         {
@@ -38,6 +41,7 @@ namespace _Project.Scripts.Clicker
         private void Click()
         {
             OnButtonClick?.Invoke();
+            OnClickAnimation?.Invoke();
         }
     }
 }
