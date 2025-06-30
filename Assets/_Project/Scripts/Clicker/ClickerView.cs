@@ -13,6 +13,8 @@ namespace _Project.Scripts.Clicker
         [SerializeField] private TMP_Text _textEnergy;
         [SerializeField] private TMP_Text _textMoney;
         [SerializeField] private Button _button;
+        
+        [field: SerializeField] public RectTransform TransformButton { get; private set; }
 
         private void Start()
         {

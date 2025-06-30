@@ -6,22 +6,15 @@ namespace _Project.Scripts.Common.DOTweenServices
 {
     public class FadeSystem
     {
-        public Tween FadeOutImage(Image image, float duration, float targetAlpha = 0f)
+        public void FadeOutImage(Image image, float duration)
         {
-            image.gameObject.SetActive(true);
+            float targetAlpha = 0f;
             Color startColor = image.color;
             startColor.a = 1f;
             image.color = startColor;
 
-            return image.DOFade(targetAlpha, duration)
-                .SetEase(Ease.InOutSine)
-                .OnComplete(() =>
-                {
-                    if (targetAlpha <= 0.1f)
-                    {
-                        image.gameObject.SetActive(false);
-                    }
-                });
+            image.DOFade(targetAlpha, duration)
+                .SetEase(Ease.InOutSine);
         }
     }
 }

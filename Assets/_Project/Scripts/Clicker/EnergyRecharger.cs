@@ -48,7 +48,7 @@ namespace _Project.Scripts.Clicker
                     if (_clickerModel.CountEnergy < _clickerData.MaxCountEnergy)
                     {
                         _clickerModel.SetCountEnergy(_clickerModel.CountEnergy + _clickerData.SizeRechargeEnergy);
-                        _clickerPresenter.UpdateUI();
+                        _clickerPresenter.UpdateEnergyUI();
                     }
                 }
             }
