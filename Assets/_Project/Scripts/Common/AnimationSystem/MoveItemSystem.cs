@@ -11,7 +11,8 @@ namespace _Project.Scripts.Common.DOTweenServices
             Vector3 endPos = startPos + to * moveDistance;
         
             moveObject.DOMove(endPos, duration)
-                .SetEase(Ease.InOutSine);
+                .SetEase(Ease.InOutSine)
+                .OnComplete(()=>moveObject.position = startPos);
         }
     }
 }

@@ -1,12 +1,13 @@
 using System;
 using _Project.Scripts.Common.DOTweenServices;
+using Cysharp.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.UI;
 using Object = UnityEngine.Object;
 
 namespace _Project.Scripts.Clicker.ObjectsPool
 {
-    public class ImageFactory : IDisposable
+    public class ImageFactory
     {
         private readonly VFXData _vfxData;
         private readonly Transform _objectsParent;
@@ -20,12 +21,7 @@ namespace _Project.Scripts.Clicker.ObjectsPool
         {
             _vfxData = vfxData;
             _objectsParent = transformParent;
-            ObjectsPool = new AnimationObjectsPool<Image>(Preload, Get, Return, _vfxData.CountAnimateObjects);
-        }
-        
-        public void Dispose()
-        {
-            ObjectsPool.Pool.Clear();
+            ObjectsPool = new AnimationObjectsPool<Image>(Preload, Get, Return, _vfxData.CountImages);
         }
         
         private Image Preload()
@@ -38,10 +34,15 @@ namespace _Project.Scripts.Clicker.ObjectsPool
             return image;
         }
 
-        private void Get(Image image)
+        private async void Get(Image image)
         {
+            image.gameObject.SetActive(true);
             _fadeSystem.FadeOutImage(image, _vfxData.DurationFade);
             _moveItemSystem.Move(image.GetComponent<RectTransform>(), _vfxData.DurationMove, _vfxData.MoveDistance, Vector3.up);
+            
+            await UniTask.Delay(TimeSpan.FromSeconds(_vfxData.TimeReturnImages));
+
+                ObjectsPool.Return(image);
         }
 
         private void Return(Image image)

@@ -1,4 +1,7 @@
+using System;
+using Cysharp.Threading.Tasks;
 using UnityEngine;
+using Object = UnityEngine.Object;
 
 namespace _Project.Scripts.Clicker.ObjectsPool
 {
@@ -14,17 +17,12 @@ namespace _Project.Scripts.Clicker.ObjectsPool
         {
             _vfxData = vfxData;
             _objectsParent = transformParent;
-            ObjectsPool = new AnimationObjectsPool<ParticleSystem>(Preload, Get, Return, _vfxData.CountAnimateObjects);
-        }
-        
-        public void Dispose()
-        {
-            ObjectsPool.Pool.Clear();
+            ObjectsPool = new AnimationObjectsPool<ParticleSystem>(Preload, Get, Return, _vfxData.CountParticles);
         }
         
         private ParticleSystem Preload()
         {
-            ParticleSystem particle = Object.Instantiate(_vfxData.ParticleSystem, 
+            ParticleSystem particle = Object.Instantiate(_vfxData.PrefabParticleSystem, 
                 _objectsParent);
             
             particle.gameObject.SetActive(false);
@@ -32,10 +30,14 @@ namespace _Project.Scripts.Clicker.ObjectsPool
             return particle;
         }
 
-        private void Get(ParticleSystem particleSystem)
+        private async void Get(ParticleSystem particleSystem)
         {
             particleSystem.gameObject.SetActive(true);
             particleSystem.Play();
+
+            await UniTask.Delay(TimeSpan.FromSeconds(_vfxData.TimeReturnParticles));
+
+                ObjectsPool.Return(particleSystem);
         }
 
         private void Return(ParticleSystem particleSystem)

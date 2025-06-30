@@ -7,7 +7,6 @@ namespace _Project.Scripts.Clicker
 {
     public class ClickerView : MonoBehaviour
     {
-        public event Action OnClickAnimation;
         public event Action OnButtonClick;
         
         [SerializeField] private Slider _slider;
@@ -41,7 +40,6 @@ namespace _Project.Scripts.Clicker
         private void Click()
         {
             OnButtonClick?.Invoke();
-            OnClickAnimation?.Invoke();
         }
     }
 }

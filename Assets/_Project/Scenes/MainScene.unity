@@ -1355,6 +1355,7 @@ MonoBehaviour:
   _textEnergy: {fileID: 879642866}
   _textMoney: {fileID: 655160329}
   _button: {fileID: 1361705612}
+  <TransformButton>k__BackingField: {fileID: 1361705611}
 --- !u!1 &600661213
 GameObject:
   m_ObjectHideFlags: 0
@@ -2241,6 +2242,7 @@ MonoBehaviour:
   _scrollPanelView: {fileID: 1595122415}
   _popUpView: {fileID: 1665100714}
   _panelBreedsView: {fileID: 1989229659}
+  _vfxData: {fileID: 11400000, guid: 96b90618d71f8c84088c0e35fbe8c75a, type: 2}
 --- !u!1 &1044846985
 GameObject:
   m_ObjectHideFlags: 0
@@ -2594,7 +2596,7 @@ RectTransform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
+  m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 553728768}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}

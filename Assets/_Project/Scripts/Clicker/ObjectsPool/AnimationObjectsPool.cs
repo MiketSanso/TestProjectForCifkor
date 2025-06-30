@@ -30,19 +30,13 @@ public class AnimationObjectsPool<T>
     public async UniTask<T> Get()
     {
         T item = Pool.Count > 0 ? Pool.Dequeue() : _preloadFunc();
-        _getAction(item);
         _active.Add(item);
+        _getAction(item);
 
         return item;
     }
-
-    public void ReturnAll()
-    {
-        foreach (T item in _active.ToArray())
-            Return(item);
-    }
         
-    private void Return(T item)
+    public void Return(T item)
     {
         _returnAction(item);
         Pool.Enqueue(item);

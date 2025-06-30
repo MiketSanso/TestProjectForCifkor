@@ -12,10 +12,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 808438cfba7a4f98a58086409163591f, type: 3}
   m_Name: AnimationsData
   m_EditorClassIdentifier: 
-  AudioClip: {fileID: 0}
-  ParticleController: {fileID: 0}
-  <SizeBeforeAnim>k__BackingField: {x: 0, y: 0, z: 0}
-  <Duration>k__BackingField: 0
-  <MoveDistance>k__BackingField: 0
-  <CountAnimateObjects>k__BackingField: 0
-  <PrefabAnimationObject>k__BackingField: {fileID: 0}
+  AudioClip: {fileID: 8300000, guid: d7df1c2f98fdbeb408f9991d106ee01f, type: 3}
+  PrefabParticleSystem: {fileID: 7267691373714832354, guid: f8e5cf6a52c43a249aacd53bc7fa0900, type: 3}
+  <CountParticles>k__BackingField: 20
+  <TimeReturnParticles>k__BackingField: 1
+  <PrefabAnimationObject>k__BackingField: {fileID: 2290570955189235604, guid: c457f60795bc29c448bad74062c3c5b4, type: 3}
+  <TimeReturnImages>k__BackingField: 1
+  <CountImages>k__BackingField: 20
+  <MoveDistance>k__BackingField: 3
+  <DurationMove>k__BackingField: 0.5
+  <DurationFade>k__BackingField: 0.8
+  <DurationPunch>k__BackingField: 0.05

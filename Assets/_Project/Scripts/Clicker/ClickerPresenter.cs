@@ -38,20 +38,23 @@ namespace _Project.Scripts.Clicker
         public void Initialize()
         {
             _view.OnButtonClick += TryAddMoney;
-            _view.OnClickAnimation += CreateVFXButton;
         }
 
         public void Dispose()
         {
             _view.OnButtonClick -= TryAddMoney;
-            _view.OnClickAnimation -= CreateVFXButton;
-
         }
-
+        
         public void UpdateUI()
         {
-            _view.ChangeEnergy((float)_clickerModel.CountEnergy / _clickerData.MaxCountEnergy, $"{_clickerModel.CountEnergy}/{_clickerData.MaxCountEnergy}");
             _view.ChangeMoney(_clickerModel.CountMoney.ToString());
+            UpdateEnergyUI();
+            PlayVFXAnimation();
+        }
+
+        public void UpdateEnergyUI()
+        {
+            _view.ChangeEnergy((float)_clickerModel.CountEnergy / _clickerData.MaxCountEnergy, $"{_clickerModel.CountEnergy}/{_clickerData.MaxCountEnergy}");
         }
 
         private void TryAddMoney()
@@ -64,7 +67,7 @@ namespace _Project.Scripts.Clicker
             }
         }
 
-        private void CreateVFXButton()
+        private void PlayVFXAnimation()
         {
             _punchScale.Punch(_view.TransformButton, Vector3.one, _vfxData.DurationPunch);
             _musicService.PlaySound(_vfxData.AudioClip);
